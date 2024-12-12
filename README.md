@@ -2,9 +2,9 @@
 
 The Military Hierarchy Simulator is designed for geospatial hierarchical simulation and visualization, enabling the organization and representation of complex military or organizational structures. By processing data from predefined .ods tables, the system integrates hierarchical relationships, location information, and images to provide detailed visualizations in KML files. These files facilitate realistic simulations of geographic military organizational management.
 
-System Overview
+**System Overview**
 
-Key Features
+**Key Features**
 
 -Hierarchical Representation: Models military or organizational hierarchies from forces to regiments, with plans to expand into finer details like battalions and squads.
 Data Integration: Processes data from spreadsheets (.ods) for geographic and hierarchical information.
@@ -13,9 +13,9 @@ Data Integration: Processes data from spreadsheets (.ods) for geographic and hie
 
 -Automatic and Manual Coordinates: Assigns geographic coordinates explicitly (based on city data) or generates them automatically for realistic positioning.
 
-Hierarchical Scope
+**Hierarchical Levels**
 
-Upper Hierarchy
+**Upper Hierarchy**
 
 The upper hierarchy models central organizational structures from the armed forces down to regiments.
 
@@ -43,7 +43,7 @@ Description: The terminal unit in the upper hierarchy, composed of troops with s
 Coordinates: Generated in circular formations around the brigade.
 Subordinates: None in this system.
 
-Lower Hierarchy (Future)
+**Lower Hierarchy (Future)**
 
 The lower hierarchy expands on regiments, breaking them into smaller units like battalions and squads:
 
@@ -59,7 +59,7 @@ Squad (Level 1): Composed of individuals with diverse roles.
 
 This future system will integrate citizen data, assigning individuals to roles based on attributes and detailing leadership and troop composition.
 
-Core Components
+**Core Components**
 
 1. Hierarchical Relationships
 The system organizes units hierarchically:
@@ -97,7 +97,7 @@ Coordinates (latitude and longitude).
 Description of higher-level units and subordinates.
 Optional image link.
 
-Functional Workflow
+**Functional Workflow**
 
 1. Hierarchy Construction
 Class Structure
@@ -145,10 +145,8 @@ Debug and validate outputs.
 Outputs
 KML File (unidades.kml):
 
-Visualizes the military hierarchy geographically.
-Compatible with Google Earth for detailed exploration.
+**Example Hierarchy**
 
-Example Hierarchy
 Force
 Name: Air Force.
 Coordinates: None.
@@ -168,4 +166,3 @@ Subordinates: Regiments.
 Regiment
 Name: 6th Air Squadron.
 Coordinates: Circularly generated around the brigade.
-This organized, optimized text provides a structured and detailed description of the Military Hierarchy Simulator, highlighting its functionality, components, and execution process.
