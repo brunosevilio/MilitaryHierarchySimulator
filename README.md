@@ -1,6 +1,6 @@
 # Military Hierarchy Simulator: Geospatial Visualization
 
-The Military Hierarchy Simulator is a platform designed for geospatial hierarchical simulation and visualization, enabling the organization and representation of complex military or organizational structures. By processing data from predefined .ods tables, the system integrates hierarchical relationships, location information, and images to provide detailed visualizations in KML files. These files facilitate realistic simulations of geographic military organizational management.
+The Military Hierarchy Simulator is designed for geospatial hierarchical simulation and visualization, enabling the organization and representation of complex military or organizational structures. By processing data from predefined .ods tables, the system integrates hierarchical relationships, location information, and images to provide detailed visualizations in KML files. These files facilitate realistic simulations of geographic military organizational management.
 
 System Overview
 
