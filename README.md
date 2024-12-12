@@ -1,158 +1,150 @@
-# MilitaryHierarchySimulator
-This system is a platform for geospatial hierarchical simulation and visualization designed to organize and represent complex military or organizational structures. It processes data from various hierarchical levels (such as forces, armies, divisions, brigades, and regiments) using predefined tables in .ods format, integrating location information, images, and hierarchical relationships. The main goal is to provide a detailed visualization of these structures in KML files, enabling realistic simulations of geographic military organizational management.
+# Military Hierarchy Simulator: Geospatial Visualization
 
-The system accommodates the diversity of military organizational models and aims to ensure realism and coherence in its representation. The military hierarchy modeled in the system is divided into two main scopes:
+The Military Hierarchy Simulator is a platform designed for geospatial hierarchical simulation and visualization, enabling the organization and representation of complex military or organizational structures. By processing data from predefined .ods tables, the system integrates hierarchical relationships, location information, and images to provide detailed visualizations in KML files. These files facilitate realistic simulations of geographic military organizational management.
 
-Upper Hierarchy
-The upper hierarchy defines the central organizational structure, from the armed forces down to regiments. It is organized as follows:
-
-Force:
-
-Description: The highest unit, distinguishing the scope and function of subordinate units (e.g., Air Force, Navy). It does not have directly assigned geographic coordinates.
-Subordinates: Armies.
-Army (Level 8):
-
-Description: A unit with a fixed geographic base (headquarters city) defined by the city name. All armies within a single force share the same scope and function.
-Subordinates: Divisions (homogeneous in scope and function).
-Division (Level 8):
-
-Description: A unit subordinate to an army, inheriting or defining its own coordinates. Divisions are homogeneous and organize heterogeneous brigades.
-Subordinates: Brigades.
-Brigade (Level 7):
-
-Description: A unit subordinate to a division, inheriting or defining its coordinates. Brigades differ in scope and function, and may be offensive, defensive, or support brigades, depending on their composition.
-Subordinates: Regiments.
-Regiment (Level 6):
-
-Description: The terminal basic unit in the functional system. Internally homogeneous, composed of troops with specific functions (e.g., Artillery Regiment, Motorized Infantry Regiment).
-Subordinates: None within the functional scope of this system.
-Lower Hierarchy
-The lower hierarchy describes the organizational details of units, expanding the regiment level into smaller structures such as battalions and squads. This scope will be developed in a future system and will be based on:
-
-Regiment (Level 5): Formed by homogeneous battalions.
-Battalion (Level 4): Formed by homogeneous companies.
-Company (Level 3): Formed by homogeneous platoons.
-Platoon (Level 2): Formed by homogeneous squads.
-Squad (Level 1): Formed by individuals with diverse roles assigned to different ranks.
-This system will allow the assignment of citizens (generated in the Citizen Generation System) to ranks and positions based on individual attributes, complementing the visualization with details of leadership and total troop numbers.
-
+System Overview
+Key Features
+Hierarchical Representation: Models military or organizational hierarchies from forces to regiments, with plans to expand into finer details like battalions and squads.
+Data Integration: Processes data from spreadsheets (.ods) for geographic and hierarchical information.
+Geospatial Visualization: Generates KML files to visualize hierarchical structures in tools like Google Earth.
+Automatic and Manual Coordinates: Assigns geographic coordinates explicitly (based on city data) or generates them automatically for realistic positioning.
 Applications
-Games and Simulations: Creating geospatial representations of military or administrative units.
-Operational Planning: Visualizing organizational structures for strategic planning.
-Core Components of the Functional System
-Hierarchical Relationships:
+Games and Simulations: Create geospatial representations of military or administrative units.
+Operational Planning: Visualize organizational structures for strategic decision-making.
+Geospatial Analysis: Integrate with GIS tools for advanced mapping and planning.
+Hierarchical Scope
+Upper Hierarchy
+The upper hierarchy models central organizational structures from the armed forces down to regiments.
 
-The system organizes units hierarchically, starting from the primary unit (Force) and branching down to terminal levels (Regiments).
-Each unit is assigned attributes such as name, level, unique identifier, coordinates (latitude and longitude), associated image, and subordinates, originating from the .ods table.
-Coordinates:
+1. Force
+Description: The highest unit, defining the scope and function of subordinate units (e.g., Air Force, Navy).
+Coordinates: None directly assigned.
+Subordinates: Armies.
+2. Army (Level 8)
+Description: Units with fixed geographic bases (headquarters city). All armies within a force share the same scope and function.
+Coordinates: Based on a designated city.
+Subordinates: Divisions (homogeneous in scope and function).
+3. Division (Level 8)
+Description: Subordinate to an army, inheriting or defining its own coordinates. Divisions are homogeneous and manage heterogeneous brigades.
+Coordinates: Explicit or inherited.
+Subordinates: Brigades.
+4. Brigade (Level 7)
+Description: Subordinate to a division, inheriting or defining its coordinates. Brigades may differ in scope (offensive, defensive, or support).
+Coordinates: Derived from the division or explicitly assigned.
+Subordinates: Regiments.
+5. Regiment (Level 6)
+Description: The terminal unit in the upper hierarchy, composed of troops with specific functions (e.g., Artillery, Infantry).
+Coordinates: Generated in circular formations around the brigade.
+Subordinates: None in this system.
+Lower Hierarchy (Future Scope)
+The lower hierarchy expands on regiments, breaking them into smaller units like battalions and squads:
 
-Explicit Coordinates: Associated with real cities through tables.
-Automatic Generation: For units without defined coordinates, circular formations are created around the superior unit, respecting a determined radius.
-Geographical Data Location and Integration:
+Regiment (Level 5): Formed by battalions.
+Battalion (Level 4): Formed by companies.
+Company (Level 3): Formed by platoons.
+Platoon (Level 2): Formed by squads.
+Squad (Level 1): Composed of individuals with diverse roles.
+This future system will integrate citizen data, assigning individuals to roles based on attributes and detailing leadership and troop composition.
 
-The system uses a DataFrame containing cities and their geographic coordinates, associating them with units like armies, divisions, and brigades.
-Coordinate data is processed and corrected to ensure accuracy and compatibility with geospatial systems.
-Generation and Visualization:
+Core Components
+1. Hierarchical Relationships
+The system organizes units hierarchically:
 
-Generates KML files with layers organized by hierarchical level, enabling clear and structured navigation.
-Each point in the KML includes detailed descriptions with hierarchical information, coordinates, and associated images.
-Example Hierarchy
-Level: Force
+Begins with the Force and branches down to Regiments.
+Attributes assigned to each unit include:
+Name.
+Level.
+Unique Identifier.
+Coordinates (Latitude/Longitude).
+Image Link.
+Subordinates.
+2. Coordinate Management
+Coordinates can be:
 
-Name: Air Force
-Coordinates: None
-Subordinates: Armies
-Level: Army
+Explicit: Linked to real cities from the city dataset.
+Automatically Generated: Circular formations around superior units, adhering to a defined radius for realism.
+3. Data Integration
+The system uses two primary DataFrames:
 
-Name: Northern Air Force
-Coordinates: Associated with a strategic city.
-Subordinates: Divisions
-Level: Division
+df_ativas: Contains hierarchical unit information (names, associated cities, images).
+cidades_df: Contains city names and geographic coordinates.
+Data corrections include:
 
-Name: Northeast Wing
-Coordinates: Defined or automatically generated around the superior unit.
-Subordinates: Brigades
-Level: Brigade
+Formatting coordinates (e.g., converting commas to dots for consistency).
+4. Geospatial Visualization
+The system generates KML files organized by hierarchical levels, with structured navigation and detailed descriptions for each unit.
 
-Name: 4th Fighter Aviation Group
-Coordinates: Derived from the division or directly assigned.
-Subordinates: Regiments
-Level: Regiment
-
-Name: 6th Air Squadron
-Coordinates: Generated in a circle around the brigade.
-1. Hierarchical Structure
-The hierarchy is built using classes, representing different levels:
-
-Unidade:
-
-A base class for units with attributes like name, level, unique ID, coordinates (latitude and longitude), image link, and subordinates.
-Includes methods like adicionar_subordinado (to add subordinates) and gerar_coordenadas (to distribute subordinates in a circular pattern around a base unit).
-Subclasses:
-
-Specific classes for each level:
-Forca (Force): Topmost level.
-Exercito (Army), Divisao (Division), Brigada (Brigade), Regimento (Regiment): Represent progressively lower levels in the hierarchy.
-Each level can recursively have subordinates, enabling the creation of a deep hierarchical structure.
-
+KML Point Features
+Unit name, level, and unique ID.
+Coordinates (latitude and longitude).
+Description of higher-level units and subordinates.
+Optional image link.
+Functional Workflow
+1. Hierarchy Construction
+Class Structure
+Unidade: Base class for all units, with attributes like name, level, unique ID, coordinates, and subordinates.
+Subclasses: Specialized classes for each level:
+Forca (Force).
+Exercito (Army).
+Divisao (Division).
+Brigada (Brigade).
+Regimento (Regiment).
 2. Helper Functions
 gerar_coordenadas_circulo
-Generates geographic coordinates arranged in a circular pattern around a base coordinate.
-Uses trigonometric functions (sin and cos) to compute positions, distributing them evenly in a circle with a given radius.
+Generates coordinates in a circular pattern using trigonometric functions (sin, cos).
 buscar_coordenadas
-Fetches coordinates (latitude and longitude) for a city from the cidades_df DataFrame based on its name.
-3. Data Processing
+Retrieves coordinates for a city from the cidades_df DataFrame.
+3. Hierarchy Processing
 processar_hierarquia
-Constructs the hierarchical structure based on two input DataFrames:
-
-df_ativas: Contains details about military units (e.g., names, associated cities, and image links).
-cidades_df: Contains city names and their geographic coordinates.
+Builds the hierarchical structure from df_ativas and cidades_df.
 Steps:
-
-Reads unit names for each hierarchical level (Force, Army, Division, Brigade, Regiment).
-Fetches coordinates for the cities associated with each unit.
-Builds the hierarchy recursively, adding subordinates and adjusting coordinates:
-Lower-level units inherit coordinates from higher levels if not explicitly defined.
-Coordinate Adjustment
-Coordinates in the city DataFrame are fixed to ensure they are in the correct floating-point format (replacing commas with dots).
-4. Generating Coordinates
+Reads unit names and hierarchical levels.
+Fetches associated city coordinates.
+Constructs the hierarchy, adding subordinates and inheriting coordinates as needed.
+4. Coordinate Assignment
 gerar_coordenadas_todos_niveis
-Assigns geographic coordinates to all units at all hierarchical levels.
-Starts from the top level (Force) and distributes subordinates in circles, progressively reducing the radius for lower levels.
-5. Generating the KML File
+Assigns geographic coordinates to all levels:
+Starts from the top level (Force).
+Distributes subordinates in circular formations, reducing the radius for each lower level.
+5. KML File Generation
 gerar_kml_com_camadas
-Creates a KML file with separate layers (folders) for each hierarchical level (Army, Division, Brigade, Regiment).
-
-For each unit:
-
-Adds a KML point with its coordinates, name, level, and description (including its subordinates and an optional image link).
-Groups points into layers based on the level.
-Point Description:
-
-Contains details like:
-Unit name.
-Level and unique ID.
-Coordinates (latitude and longitude).
-Higher-level hierarchy and subordinates.
-Image (if available).
-6. DataFrame Integration
-The DataFrames are loaded from ODS files (spreadsheets).
-df_ativas: Contains hierarchical information about military units.
-cidades_df: Contains geographic coordinates of cities.
-Data Correction
-Coordinates in the city DataFrame are fixed to ensure consistent formatting (converted from strings with commas to floats with dots).
-7. Main Execution Flow
-Loads the data from the spreadsheets into DataFrames.
-Processes the military hierarchy using processar_hierarquia.
-Assigns geographic coordinates to all hierarchical levels using gerar_coordenadas_todos_niveis.
-Generates a KML file with hierarchical layers using gerar_kml_com_camadas.
-Prints debug information about the DataFrames for validation.
+Creates a KML file with layers for each hierarchical level (e.g., Army, Division, Brigade).
+Steps:
+Adds KML points with attributes and descriptions.
+Groups points into layers by level.
+Execution and Outputs
+Execution Flow
+Load data from .ods spreadsheets into DataFrames.
+Process the hierarchy using processar_hierarquia.
+Assign coordinates to all units using gerar_coordenadas_todos_niveis.
+Generate the KML file with gerar_kml_com_camadas.
+Debug and validate outputs.
 Outputs
 KML File (unidades.kml):
-Can be opened in Google Earth to visualize the military hierarchy geographically.
-Debug Messages:
-Includes details about the creation of units and the coordinates assigned to them.
-Applications
-Geographic visualization of hierarchical structures (e.g., military organizations).
-Strategic planning and geographic analysis.
-Integration with GIS (Geographic Information Systems) tools for advanced mapping.
+
+Visualizes the military hierarchy geographically.
+Compatible with Google Earth for detailed exploration.
+Debug Information:
+
+Logs details about unit creation and coordinate assignment.
+Example Hierarchy
+Force
+Name: Air Force.
+Coordinates: None.
+Subordinates: Armies.
+Army
+Name: Northern Air Force.
+Coordinates: Strategic city.
+Subordinates: Divisions.
+Division
+Name: Northeast Wing.
+Coordinates: Defined or generated automatically.
+Subordinates: Brigades.
+Brigade
+Name: 4th Fighter Aviation Group.
+Coordinates: Derived from the division or explicitly assigned.
+Subordinates: Regiments.
+Regiment
+Name: 6th Air Squadron.
+Coordinates: Circularly generated around the brigade.
+This organized, optimized text provides a structured and detailed description of the Military Hierarchy Simulator, highlighting its functionality, components, and execution process.
